@@ -10,14 +10,15 @@
 
 - [ ]  Controle JWT via Handshake
 - [ ]  Modelagem de dados
-- [ ]  Retorno em formato JSON
-- [ ]  Requisições GET, POST, PUT ou DELETE, conforme a melhor prática
-- [ ]  Persistência dos dados em banco relacional MYSQL
-- [ ]  Criar README do projeto descrevendo as tecnologias utilizadas, chamadas dos serviços e configurações necessário para executar a aplicação
+- [X]  Retorno em formato JSON
+- [X]  Requisições GET, POST, PUT ou DELETE, conforme a melhor prática
+- [X]  Persistência dos dados em banco relacional MYSQL
+- [X]  Criar README do projeto descrevendo as tecnologias utilizadas, chamadas dos serviços e configurações necessário para executar a aplicação
 - [ ]  Sumário da quantidade de entrada e saída
 - [ ]  Sumário da quantidade de entrada e saída de veículos por hora
-- [ ]  Relatório para dono do estableecimento
+- [ ]  Relatório para dono do estabelecimento
 - [ ]  Uso de TDD
+- [ ]  Adição do swagger no projeto
 
 ## Rodando localmente
 
@@ -54,5 +55,5 @@ Para rodar os testes
 
 ## Stack utilizada
 
-**Back-end:** Node, NestJS
+**Back-end:** Node, NestJS, class-validator, typeorm
 

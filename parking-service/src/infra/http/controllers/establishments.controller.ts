@@ -12,13 +12,20 @@ import { Establishment } from '@applicationentities/establishment/establishment.
 import { CreateEstablishmentBody } from '@infrahttp/dtos/create-establishment-body';
 import { UpdateEstablishmentBody } from '@infrahttp/dtos/update-establishment-body';
 
+interface FindAllEstablishmentsResponse {
+  establishments: Establishment[];
+}
+
 @Controller('establishments')
 export class EstablishmentsController {
   constructor(private readonly establishmentService: EstablishmentService) {}
 
   @Get()
-  async getEstablishments(): Promise<Establishment[]> {
-    return this.establishmentService.findAllEstablishments();
+  async findAllEstablishments(): Promise<FindAllEstablishmentsResponse> {
+    const establishments =
+      await this.establishmentService.findAllEstablishments();
+
+    return { establishments };
   }
 
   @Post()

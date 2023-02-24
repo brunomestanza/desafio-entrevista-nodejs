@@ -12,17 +12,23 @@ import { Vehicle } from '@application/entities/vehicle/vehicle.entity';
 import { CreateVehicleBody } from '@infrahttp/dtos/create-vehicle-body';
 import { UpdateVehicleBody } from '@infrahttp/dtos/update-vehicle-body';
 
+interface FindAllVehiclesResponse {
+  vehicles: Vehicle[];
+}
+
 @Controller('vehicles')
 export class VehiclesController {
   constructor(private readonly establishmentService: VehicleService) {}
 
   @Get()
-  async getEstablishments(): Promise<Vehicle[]> {
-    return this.establishmentService.findAllVehicles();
+  async findAllVehicles(): Promise<FindAllVehiclesResponse> {
+    const vehicles = await this.establishmentService.findAllVehicles();
+
+    return { vehicles };
   }
 
   @Post()
-  async createEstablishment(@Body() body: CreateVehicleBody) {
+  async createVehicle(@Body() body: CreateVehicleBody) {
     const { brand, model, color, licensePlate, type } = body;
 
     return this.establishmentService.createVehicle({
@@ -35,7 +41,7 @@ export class VehiclesController {
   }
 
   @Put()
-  async updateEstablisment(@Body() body: UpdateVehicleBody) {
+  async updateVehicle(@Body() body: UpdateVehicleBody) {
     return this.establishmentService.updateVehicle(body);
   }
 

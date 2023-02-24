@@ -12,7 +12,7 @@ export class EstablishmentService {
   ) {}
 
   async findAllEstablishments(): Promise<Establishment[]> {
-    return this.establishmentRepository.find();
+    return await this.establishmentRepository.find();
   }
 
   async createEstablishment(body: CreateEstablishmentBody) {
