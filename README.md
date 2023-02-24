@@ -3,7 +3,7 @@
 ## Funcionalidades
 
 - [X]  CRUD dos estabelecimentos
-- [ ]  CRUD dos veículos
+- [X]  CRUD dos veículos
 - [ ]  Controle de entrada e saída de veículos
 
 ## Requisitos

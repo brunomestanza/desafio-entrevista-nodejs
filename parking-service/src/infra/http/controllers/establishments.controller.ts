@@ -10,7 +10,7 @@ import {
 import { EstablishmentService } from '@application/entities/establishment/establishment.service';
 import { Establishment } from '@applicationentities/establishment/establishment.entity';
 import { CreateEstablishmentBody } from '@infrahttp/dtos/create-establishment-body';
-import { UpdateEstablishmentBody } from '@infrahttp/dtos/update-establishment';
+import { UpdateEstablishmentBody } from '@infrahttp/dtos/update-establishment-body';
 
 @Controller('establishments')
 export class EstablishmentsController {

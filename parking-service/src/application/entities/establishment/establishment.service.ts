@@ -2,7 +2,7 @@ import { Injectable, Inject } from '@nestjs/common';
 import { Repository } from 'typeorm';
 import { Establishment } from './establishment.entity';
 import { CreateEstablishmentBody } from '@infrahttp/dtos/create-establishment-body';
-import { UpdateEstablishmentBody } from '@infrahttp/dtos/update-establishment';
+import { UpdateEstablishmentBody } from '@infrahttp/dtos/update-establishment-body';
 
 @Injectable()
 export class EstablishmentService {
