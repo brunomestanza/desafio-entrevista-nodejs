@@ -1,5 +1,6 @@
 import { Establishment } from '@application/entities/establishment/establishment.entity';
 import { Vehicle } from '@application/entities/vehicle/vehicle.entity';
+import { Entry } from '@applicationentities/entry/entry.entity';
 import { DataSource } from 'typeorm';
 
 export const databaseProviders = [
@@ -13,7 +14,7 @@ export const databaseProviders = [
         username: 'root',
         password: 'mestanza',
         database: 'parking',
-        entities: [Establishment, Vehicle],
+        entities: [Establishment, Vehicle, Entry],
         synchronize: true,
       });
 
