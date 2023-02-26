@@ -8,5 +8,6 @@ import { VehiclesController } from '@infrahttp/controllers/vehicles.controller';
   imports: [DatabaseModule],
   controllers: [VehiclesController],
   providers: [...vehicleProviders, VehicleService],
+  exports: [...vehicleProviders, VehicleService],
 })
 export class VehicleModule {}

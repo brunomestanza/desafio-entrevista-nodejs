@@ -8,5 +8,6 @@ import { EstablishmentsController } from '@infra/http/controllers/establishments
   imports: [DatabaseModule],
   controllers: [EstablishmentsController],
   providers: [...establishmentProviders, EstablishmentService],
+  exports: [...establishmentProviders, EstablishmentService],
 })
 export class EstablishmentModule {}

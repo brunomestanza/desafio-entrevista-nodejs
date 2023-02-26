@@ -16,7 +16,9 @@ export class EntryService {
   constructor(
     @Inject('ENTRY_REPOSITORY')
     private entryRepository: Repository<Entry>,
+    @Inject('ESTABLISHMENT_REPOSITORY')
     private establishmentRepository: Repository<Establishment>,
+    @Inject('VEHICLE_REPOSITORY')
     private vehicleRepository: Repository<Vehicle>,
   ) {}
 
@@ -46,18 +48,28 @@ export class EntryService {
   }
 
   async createEntry(body: CreateEntryBody) {
-    const establishment = new Establishment();
-    establishment.address = 'teste';
-    const vehicle = new Vehicle();
+    const establishment = await this.establishmentRepository.findOne({
+      where: {
+        id: body.establishmentId,
+      },
+    });
+
+    const vehicle = await this.vehicleRepository.findOne({
+      where: {
+        id: body.vehicleId,
+      },
+    });
+
+    console.log(establishment, vehicle);
 
     const teste = await this.entryRepository.save({
-      establishmentId: establishment,
-      vehicleId: vehicle,
+      establishmentId: establishment?.id,
+      vehicleId: vehicle?.id,
       entryDate: String(new Date()),
       exitDate: '',
     });
 
-    console.log(teste.establishmentId);
+    await this.entryRepository.save(teste);
   }
 
   async confirmVehicleExit(entryId: number) {
