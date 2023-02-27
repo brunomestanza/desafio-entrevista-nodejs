@@ -1,4 +1,4 @@
-import { Injectable, Inject } from '@nestjs/common';
+import { Injectable, Inject, BadRequestException } from '@nestjs/common';
 import { Repository } from 'typeorm';
 import { Entry } from './entry.entity';
 import { Establishment } from '@applicationentities/establishment/establishment.entity';
@@ -54,17 +54,23 @@ export class EntryService {
       },
     });
 
+    if (!establishment) {
+      throw new BadRequestException('No establishment found with given id');
+    }
+
     const vehicle = await this.vehicleRepository.findOne({
       where: {
         id: body.vehicleId,
       },
     });
 
-    console.log(establishment, vehicle);
+    if (!vehicle) {
+      throw new BadRequestException('No vehicle found with given id');
+    }
 
     const teste = await this.entryRepository.save({
-      establishmentId: establishment?.id,
-      vehicleId: vehicle?.id,
+      establishment,
+      vehicle,
       entryDate: String(new Date()),
       exitDate: '',
     });
