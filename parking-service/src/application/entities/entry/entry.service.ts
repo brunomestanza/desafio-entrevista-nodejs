@@ -4,7 +4,6 @@ import { Entry } from './entry.entity';
 import { Establishment } from '@applicationentities/establishment/establishment.entity';
 import { Vehicle } from '@applicationentities/vehicle/vehicle.entity';
 import { CreateEntryBody } from '@infrahttp/dtos/create-entry-body';
-import { UpdateEntryBody } from '@infrahttp/dtos/update-entry-body';
 
 interface CountEntrysAndExitsResponse {
   entrys: number;

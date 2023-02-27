@@ -11,7 +11,7 @@ import {
 import { EntryService } from '@application/entities/entry/entry.service';
 import { Entry } from '@applicationentities/entry/entry.entity';
 import { CreateEntryBody } from '@infrahttp/dtos/create-entry-body';
-import { UpdateEntryBody } from '@infrahttp/dtos/update-entry-body';
+import { ApiTags } from '@nestjs/swagger';
 
 interface FindAllEntrysResponse {
   entrys: Entry[];
@@ -22,6 +22,7 @@ interface CountEntrysAndExitsResponse {
   exits: number;
 }
 
+@ApiTags('Entrys')
 @Controller('entrys')
 export class EntryController {
   constructor(private readonly entryService: EntryService) {}

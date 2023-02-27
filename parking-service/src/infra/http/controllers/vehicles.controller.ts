@@ -11,11 +11,13 @@ import { VehicleService } from '@application/entities/vehicle/vehicle.service';
 import { Vehicle } from '@application/entities/vehicle/vehicle.entity';
 import { CreateVehicleBody } from '@infrahttp/dtos/create-vehicle-body';
 import { UpdateVehicleBody } from '@infrahttp/dtos/update-vehicle-body';
+import { ApiTags } from '@nestjs/swagger';
 
 interface FindAllVehiclesResponse {
   vehicles: Vehicle[];
 }
 
+@ApiTags('Vehicles')
 @Controller('vehicles')
 export class VehiclesController {
   constructor(private readonly establishmentService: VehicleService) {}

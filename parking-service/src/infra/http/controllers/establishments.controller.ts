@@ -11,11 +11,13 @@ import { EstablishmentService } from '@application/entities/establishment/establ
 import { Establishment } from '@applicationentities/establishment/establishment.entity';
 import { CreateEstablishmentBody } from '@infrahttp/dtos/create-establishment-body';
 import { UpdateEstablishmentBody } from '@infrahttp/dtos/update-establishment-body';
+import { ApiTags } from '@nestjs/swagger';
 
 interface FindAllEstablishmentsResponse {
   establishments: Establishment[];
 }
 
+@ApiTags('Establishments')
 @Controller('establishments')
 export class EstablishmentsController {
   constructor(private readonly establishmentService: EstablishmentService) {}
