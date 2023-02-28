@@ -1,7 +1,7 @@
+import { ApiProperty } from '@nestjs/swagger';
 import { Min, IsNumber, IsString } from 'class-validator';
 import { IsValidCnpj } from '@application/entities/establishment/CnpjValidator';
 import { IsValidPhone } from '@application/entities/establishment/PhoneValidator';
-import { ApiProperty } from '@nestjs/swagger';
 
 export class UpdateEstablishmentBody {
   @IsNumber({}, { message: 'Id has to be a number' })

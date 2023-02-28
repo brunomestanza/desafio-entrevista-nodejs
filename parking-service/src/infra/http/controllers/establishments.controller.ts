@@ -1,17 +1,17 @@
 import {
   Controller,
+  Param,
   Body,
   Get,
   Post,
   Put,
   Delete,
-  Param,
 } from '@nestjs/common';
+import { ApiTags } from '@nestjs/swagger';
 import { EstablishmentService } from '@application/entities/establishment/establishment.service';
-import { Establishment } from '@applicationentities/establishment/establishment.entity';
+import { Establishment } from '@application/entities/establishment/establishment.entity';
 import { CreateEstablishmentBody } from '@infrahttp/dtos/create-establishment-body';
 import { UpdateEstablishmentBody } from '@infrahttp/dtos/update-establishment-body';
-import { ApiTags } from '@nestjs/swagger';
 
 interface FindAllEstablishmentsResponse {
   establishments: Establishment[];
@@ -26,6 +26,16 @@ export class EstablishmentsController {
   async findAllEstablishments(): Promise<FindAllEstablishmentsResponse> {
     const establishments =
       await this.establishmentService.findAllEstablishments();
+
+    return { establishments };
+  }
+
+  @Get(':id')
+  async findEstablishmentById(
+    @Param('id') id: number,
+  ): Promise<FindAllEstablishmentsResponse> {
+    const establishments =
+      await this.establishmentService.findEstablishmentById(id);
 
     return { establishments };
   }

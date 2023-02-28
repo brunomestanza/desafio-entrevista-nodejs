@@ -1,7 +1,7 @@
+import { ApiProperty } from '@nestjs/swagger';
 import { IsNotEmpty, Min, IsString } from 'class-validator';
 import { IsValidCnpj } from '@application/entities/establishment/CnpjValidator';
 import { IsValidPhone } from '@application/entities/establishment/PhoneValidator';
-import { ApiProperty } from '@nestjs/swagger';
 
 export class CreateEstablishmentBody {
   @IsNotEmpty({ message: "Name can't be null" })

@@ -1,4 +1,4 @@
-import { Injectable, Inject } from '@nestjs/common';
+import { Injectable, Inject, BadRequestException } from '@nestjs/common';
 import { Repository } from 'typeorm';
 import { Establishment } from './establishment.entity';
 import { CreateEstablishmentBody } from '@infrahttp/dtos/create-establishment-body';
@@ -13,6 +13,10 @@ export class EstablishmentService {
 
   async findAllEstablishments(): Promise<Establishment[]> {
     return await this.establishmentRepository.find();
+  }
+
+  async findEstablishmentById(id: number): Promise<Establishment[]> {
+    return await this.establishmentRepository.findBy({ id: id });
   }
 
   async createEstablishment(body: CreateEstablishmentBody) {
@@ -32,6 +36,10 @@ export class EstablishmentService {
         id: body.id,
       },
     });
+
+    if (!establishment) {
+      throw new BadRequestException('No establishment found to update.');
+    }
 
     const newEstablishment = {
       ...establishment[0],
