@@ -10,6 +10,10 @@ export class UsersService {
     private userRepository: Repository<User>,
   ) {}
 
+  async validateUser(email: string) {
+    return this.userRepository.findOne({ where: { email: email } });
+  }
+
   async createUser(body: CreateUserBody) {
     await this.userRepository.save({
       email: body.email,
