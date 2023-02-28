@@ -1,9 +1,9 @@
 import {
   Entity,
-  Column,
   PrimaryGeneratedColumn,
-  JoinColumn,
+  Column,
   ManyToOne,
+  JoinColumn,
 } from 'typeorm';
 import { Establishment } from '@application/entities/establishment/establishment.entity';
 import { Vehicle } from '@application/entities/vehicle/vehicle.entity';

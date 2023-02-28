@@ -1,7 +1,7 @@
+import { DataSource } from 'typeorm';
 import { Establishment } from '@application/entities/establishment/establishment.entity';
 import { Vehicle } from '@application/entities/vehicle/vehicle.entity';
 import { Entry } from '@applicationentities/entry/entry.entity';
-import { DataSource } from 'typeorm';
 
 export const databaseProviders = [
   {

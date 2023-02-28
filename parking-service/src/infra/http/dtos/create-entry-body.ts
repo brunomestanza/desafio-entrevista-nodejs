@@ -1,5 +1,5 @@
-import { IsNotEmpty, IsNumber } from 'class-validator';
 import { ApiProperty } from '@nestjs/swagger';
+import { IsNotEmpty, IsNumber } from 'class-validator';
 
 export class CreateEntryBody {
   @IsNotEmpty({ message: "EstablishmentId can't be null" })

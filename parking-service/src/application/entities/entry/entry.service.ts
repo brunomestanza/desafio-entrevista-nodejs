@@ -1,8 +1,8 @@
 import { Injectable, Inject, BadRequestException } from '@nestjs/common';
 import { Repository } from 'typeorm';
 import { Entry } from './entry.entity';
-import { Establishment } from '@applicationentities/establishment/establishment.entity';
-import { Vehicle } from '@applicationentities/vehicle/vehicle.entity';
+import { Establishment } from '@application/entities/establishment/establishment.entity';
+import { Vehicle } from '@application/entities/vehicle/vehicle.entity';
 import { CreateEntryBody } from '@infrahttp/dtos/create-entry-body';
 
 interface CountEntrysAndExitsResponse {
@@ -28,20 +28,21 @@ export class EntryService {
   async findAllEntrysFromEstablishment(
     establishmentId: number,
   ): Promise<Entry[]> {
-    console.log('Check point!');
-    return await this.entryRepository.find({
-      // where: {
-      //   establishment.id: establishmentId,
-      // },
+    return await this.entryRepository.findBy({
+      establishment: { id: establishmentId },
+    });
+  }
+
+  async findAllEntrysFromVehicle(vehicleId: number): Promise<Entry[]> {
+    return await this.entryRepository.findBy({
+      establishment: { id: vehicleId },
     });
   }
 
   async countEntrysAndExits(): Promise<CountEntrysAndExitsResponse> {
     const entrys = await this.entryRepository.count();
-    const vehiclesWithNoExit = await this.entryRepository.count({
-      where: {
-        exitDate: '',
-      },
+    const vehiclesWithNoExit = await this.entryRepository.countBy({
+      exitDate: '',
     });
 
     return { entrys, exits: entrys - vehiclesWithNoExit };
@@ -83,33 +84,7 @@ export class EntryService {
     );
   }
 
-  // async updateEstablishment(body: UpdateEstablishmentBody) {
-  //   const establishment = await this.establishmentRepository.find({
-  //     where: {
-  //       id: body.id,
-  //     },
-  //   });
-
-  //   const newEstablishment = {
-  //     ...establishment[0],
-  //     ...body,
-  //   };
-
-  //   await this.establishmentRepository.update(
-  //     { id: body.id },
-  //     {
-  //       name: newEstablishment.name,
-  //       cnpj: newEstablishment.cnpj,
-  //       address: newEstablishment.address,
-  //       phone: newEstablishment.phone,
-  //       quantityOfMotorcycleVacancys:
-  //         newEstablishment.quantityOfMotorcycleVacancys,
-  //       quantityOfCarsVacancys: newEstablishment.quantityOfCarsVacancys,
-  //     },
-  //   );
-  // }
-
-  // async deleteEstablishment(id: number) {
-  //   await this.establishmentRepository.delete(id);
-  // }
+  async deleteEntry(id: number) {
+    await this.entryRepository.delete(id);
+  }
 }
