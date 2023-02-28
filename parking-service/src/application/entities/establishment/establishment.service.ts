@@ -31,7 +31,7 @@ export class EstablishmentService {
   }
 
   async updateEstablishment(body: UpdateEstablishmentBody) {
-    const establishment = await this.establishmentRepository.find({
+    const establishment = await this.establishmentRepository.findOne({
       where: {
         id: body.id,
       },

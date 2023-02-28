@@ -1,4 +1,4 @@
-import { Injectable, Inject } from '@nestjs/common';
+import { Injectable, Inject, BadRequestException } from '@nestjs/common';
 import { Repository } from 'typeorm';
 import { Vehicle } from './vehicle.entity';
 import { CreateVehicleBody } from '@infra/http/dtos/create-vehicle-body';
@@ -15,6 +15,10 @@ export class VehicleService {
     return this.vehiclesRepository.find();
   }
 
+  async findVehicleById(id: number): Promise<Vehicle[]> {
+    return this.vehiclesRepository.findBy({ id: id });
+  }
+
   async createVehicle(body: CreateVehicleBody) {
     await this.vehiclesRepository.save({
       brand: body.brand,
@@ -26,11 +30,13 @@ export class VehicleService {
   }
 
   async updateVehicle(body: UpdateVehicleBody) {
-    const vehicle = await this.vehiclesRepository.find({
-      where: {
-        id: body.id,
-      },
+    const vehicle = await this.vehiclesRepository.findOne({
+      where: { id: body.id },
     });
+
+    if (!vehicle) {
+      throw new BadRequestException('No vehicle found to update.');
+    }
 
     const newVehicle = {
       ...vehicle[0],

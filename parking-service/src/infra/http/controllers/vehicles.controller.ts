@@ -1,17 +1,17 @@
 import {
   Controller,
+  Param,
   Body,
   Get,
   Post,
   Put,
   Delete,
-  Param,
 } from '@nestjs/common';
+import { ApiTags } from '@nestjs/swagger';
 import { VehicleService } from '@application/entities/vehicle/vehicle.service';
 import { Vehicle } from '@application/entities/vehicle/vehicle.entity';
 import { CreateVehicleBody } from '@infrahttp/dtos/create-vehicle-body';
 import { UpdateVehicleBody } from '@infrahttp/dtos/update-vehicle-body';
-import { ApiTags } from '@nestjs/swagger';
 
 interface FindAllVehiclesResponse {
   vehicles: Vehicle[];
@@ -25,6 +25,15 @@ export class VehiclesController {
   @Get()
   async findAllVehicles(): Promise<FindAllVehiclesResponse> {
     const vehicles = await this.establishmentService.findAllVehicles();
+
+    return { vehicles };
+  }
+
+  @Get(':id')
+  async findVehicleById(
+    @Param('id') id: number,
+  ): Promise<FindAllVehiclesResponse> {
+    const vehicles = await this.establishmentService.findVehicleById(id);
 
     return { vehicles };
   }
