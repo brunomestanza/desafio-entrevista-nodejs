@@ -12,6 +12,7 @@ async function bootstrap() {
       'Uma API para controle de estacionamento, registro de estabelecimentos e de veículos!',
     )
     .setVersion('1.0')
+    .addTag('Users', 'Adicão e remoção de usuários para acesso as demais rotas')
     .addTag('Establishments', 'CRUD dos estabelecimentos')
     .addTag('Vehicles', 'CRUD dos veículos')
     .addTag('Entrys', 'Sistema de gerenciamento do estacionamento')
