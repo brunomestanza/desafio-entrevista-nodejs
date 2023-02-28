@@ -4,7 +4,7 @@
 
 - [X]  CRUD dos estabelecimentos
 - [X]  CRUD dos veículos
-- [ ]  Controle de entrada e saída de veículos
+- [X]  Controle de entrada e saída de veículos
 
 ## Requisitos
 
@@ -14,11 +14,11 @@
 - [X]  Requisições GET, POST, PUT ou DELETE, conforme a melhor prática
 - [X]  Persistência dos dados em banco relacional MYSQL
 - [X]  Criar README do projeto descrevendo as tecnologias utilizadas, chamadas dos serviços e configurações necessário para executar a aplicação
-- [ ]  Sumário da quantidade de entrada e saída
+- [X]  Sumário da quantidade de entrada e saída
 - [ ]  Sumário da quantidade de entrada e saída de veículos por hora
 - [ ]  Relatório para dono do estabelecimento
 - [ ]  Uso de TDD
-- [ ]  Adição do swagger no projeto
+- [X]  Adição do swagger no projeto
 
 ## Rodando localmente
 

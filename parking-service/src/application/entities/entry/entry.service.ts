@@ -28,6 +28,7 @@ export class EntryService {
   async findAllEntrysFromEstablishment(
     establishmentId: number,
   ): Promise<Entry[]> {
+    console.log('Check point!');
     return await this.entryRepository.find({
       // where: {
       //   establishment.id: establishmentId,
@@ -67,14 +68,12 @@ export class EntryService {
       throw new BadRequestException('No vehicle found with given id');
     }
 
-    const teste = await this.entryRepository.save({
+    await this.entryRepository.save({
       establishment,
       vehicle,
       entryDate: String(new Date()),
       exitDate: '',
     });
-
-    await this.entryRepository.save(teste);
   }
 
   async confirmVehicleExit(entryId: number) {

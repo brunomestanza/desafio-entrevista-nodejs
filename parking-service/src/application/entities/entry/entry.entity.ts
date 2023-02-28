@@ -2,8 +2,8 @@ import {
   Entity,
   Column,
   PrimaryGeneratedColumn,
-  OneToOne,
   JoinColumn,
+  ManyToOne,
 } from 'typeorm';
 import { Establishment } from '@application/entities/establishment/establishment.entity';
 import { Vehicle } from '@application/entities/vehicle/vehicle.entity';
@@ -19,11 +19,15 @@ export class Entry {
   @Column()
   exitDate: string;
 
-  @OneToOne(() => Establishment, { cascade: true, eager: true })
+  @ManyToOne(() => Establishment, {
+    cascade: true,
+    eager: true,
+    onDelete: 'CASCADE',
+  })
   @JoinColumn()
   establishment: Establishment;
 
-  @OneToOne(() => Vehicle, { cascade: true, eager: true })
+  @ManyToOne(() => Vehicle, { cascade: true, eager: true, onDelete: 'CASCADE' })
   @JoinColumn()
   vehicle: Vehicle;
 }

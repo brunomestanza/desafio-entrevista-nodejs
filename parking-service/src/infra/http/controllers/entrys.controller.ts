@@ -34,22 +34,23 @@ export class EntryController {
     return { entrys };
   }
 
-  @Get(':establishmentId')
-  async findAllEntrysFromEstablishment(
-    @Param('establishmentId') establishmentId: number,
-  ): Promise<FindAllEntrysResponse> {
-    const entrys = await this.entryService.findAllEntrysFromEstablishment(
-      establishmentId,
-    );
-
-    return { entrys };
-  }
-
   @Get('summary')
   async countEntrysAndExits(): Promise<CountEntrysAndExitsResponse> {
     const { entrys, exits } = await this.entryService.countEntrysAndExits();
 
     return { entrys, exits };
+  }
+
+  @Get(':establishmentId')
+  async findAllEntrysFromEstablishment(
+    @Param('establishmentId') establishmentId: number,
+  ): Promise<FindAllEntrysResponse> {
+    console.log('Check point!');
+    const entrys = await this.entryService.findAllEntrysFromEstablishment(
+      establishmentId,
+    );
+
+    return { entrys };
   }
 
   @Post()
