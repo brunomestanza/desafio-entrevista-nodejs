@@ -1,23 +1,27 @@
 import {
   Controller,
   Param,
+  UseGuards,
   Body,
   Get,
   Post,
   Put,
   Delete,
 } from '@nestjs/common';
-import { ApiTags } from '@nestjs/swagger';
+import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
 import { VehicleService } from '@application/entities/vehicle/vehicle.service';
 import { Vehicle } from '@application/entities/vehicle/vehicle.entity';
 import { CreateVehicleBody } from '@infrahttp/dtos/create-vehicle-body';
 import { UpdateVehicleBody } from '@infrahttp/dtos/update-vehicle-body';
+import { JwtAuthGuard } from '@applicationentities/auth/jwt-auth.guard';
 
 interface FindAllVehiclesResponse {
   vehicles: Vehicle[];
 }
 
 @ApiTags('Vehicles')
+@ApiBearerAuth('access-token')
+@UseGuards(JwtAuthGuard)
 @Controller('vehicles')
 export class VehiclesController {
   constructor(private readonly establishmentService: VehicleService) {}

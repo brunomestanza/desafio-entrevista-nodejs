@@ -3,7 +3,7 @@ import { EstablishmentModule } from '@application/entities/establishment/establi
 import { VehicleModule } from '@application/entities/vehicle/vehicle.module';
 import { EntryModule } from '@application/entities/entry/entry.module';
 import { AuthModule } from '@application/entities/auth/auth.module';
-import { UsersModule } from '@application/entities/users/users.module';
+import { UsersModule } from '@applicationentities/users/users.module';
 
 @Module({
   imports: [

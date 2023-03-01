@@ -6,11 +6,13 @@ import {
   Post,
   Patch,
   Delete,
+  UseGuards,
 } from '@nestjs/common';
-import { ApiTags } from '@nestjs/swagger';
+import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
 import { Entry } from '@applicationentities/entry/entry.entity';
 import { EntryService } from '@application/entities/entry/entry.service';
 import { CreateEntryBody } from '@infrahttp/dtos/create-entry-body';
+import { JwtAuthGuard } from '@applicationentities/auth/jwt-auth.guard';
 
 interface FindEntrysResponse {
   entrys: Entry[];
@@ -22,6 +24,8 @@ interface CountEntrysAndExitsResponse {
 }
 
 @ApiTags('Entrys')
+@ApiBearerAuth('access-token')
+@UseGuards(JwtAuthGuard)
 @Controller('entrys')
 export class EntryController {
   constructor(private readonly entryService: EntryService) {}

@@ -2,22 +2,26 @@ import {
   Controller,
   Param,
   Body,
+  UseGuards,
   Get,
   Post,
   Put,
   Delete,
 } from '@nestjs/common';
-import { ApiTags } from '@nestjs/swagger';
+import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
 import { EstablishmentService } from '@application/entities/establishment/establishment.service';
 import { Establishment } from '@application/entities/establishment/establishment.entity';
 import { CreateEstablishmentBody } from '@infrahttp/dtos/create-establishment-body';
 import { UpdateEstablishmentBody } from '@infrahttp/dtos/update-establishment-body';
+import { JwtAuthGuard } from '@application/entities/auth/jwt-auth.guard';
 
 interface FindAllEstablishmentsResponse {
   establishments: Establishment[];
 }
 
 @ApiTags('Establishments')
+@ApiBearerAuth('access-token')
+@UseGuards(JwtAuthGuard)
 @Controller('establishments')
 export class EstablishmentsController {
   constructor(private readonly establishmentService: EstablishmentService) {}
