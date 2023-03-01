@@ -69,6 +69,28 @@ export class EntryService {
       throw new BadRequestException('No vehicle found with given id');
     }
 
+    let quantityOfVacancys: number;
+
+    const quantityOfVehicles = await this.entryRepository.count({
+      where: {
+        establishment: establishment,
+        exitDate: '',
+        vehicle: { type: vehicle.type },
+      },
+    });
+
+    if (vehicle.type === 'Carro') {
+      quantityOfVacancys =
+        establishment.quantityOfCarsVacancys - quantityOfVehicles;
+    } else {
+      quantityOfVacancys =
+        establishment.quantityOfMotorcycleVacancys - quantityOfVehicles;
+    }
+
+    if (quantityOfVacancys <= 0) {
+      throw new BadRequestException('No vacancys');
+    }
+
     await this.entryRepository.save({
       establishment,
       vehicle,

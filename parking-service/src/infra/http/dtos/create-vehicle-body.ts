@@ -41,8 +41,8 @@ export class CreateVehicleBody {
   @IsNotEmpty({ message: "Type can't be null" })
   @IsString({ message: 'Type has to be a string' })
   @ApiProperty({
-    description: 'Tipo de carro.',
-    example: 'Conversível',
+    description: 'Pode ser carro ou moto.',
+    example: 'Carro',
   })
   type: string;
 }
